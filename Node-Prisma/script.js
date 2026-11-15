@@ -4,8 +4,13 @@ const prisma = new PrismaClient();
 
 async function main() {
     //onde iremos consultar banco de dados
-    const users =await prisma.user.findMany();
-    console.log(users)
+ const userWithPosts = await prisma.user.findMany({
+    include: {
+        posts: true,
+    },
+ })
+
+ console.dir(userWithPosts, {depth: null});
 }
 
 main()
@@ -15,5 +20,5 @@ main()
   .catch(async (e) => {
     console.error(e);
     await prisma.$disconnect();
-    Process.exit(1);
+    process.exit(1);
   });
