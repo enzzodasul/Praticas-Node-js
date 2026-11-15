@@ -4,15 +4,8 @@ const prisma = new PrismaClient();
 
 async function main() {
     //onde iremos consultar banco de dados
-
-    const user =await prisma.user.create({
-        data: {
-            name: "Alice",
-            email:"alice@gmail.com",
-
-        },
-    })
-    console.log("Created user: ", user)
+    const users =await prisma.user.findMany();
+    console.log(users)
 }
 
 main()
