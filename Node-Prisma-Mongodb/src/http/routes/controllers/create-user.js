@@ -1,4 +1,4 @@
-import {} from "../../../lib/prisma.js";
+import {prisma} from "../../../lib/prisma.js";
 
 export async function createdUser(request, reply) {
   try {
@@ -7,7 +7,7 @@ export async function createdUser(request, reply) {
     const user = await prisma.user.findUnique({
       where: {
         email,
-      },
+      }
     });
     if (user) {
       return reply.status(489).send({
